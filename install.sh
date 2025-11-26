@@ -18,6 +18,7 @@ VENV_DIR="${PROJECT_ROOT}/.venv"
 REQ_FILE="${PROJECT_ROOT}/requirements.txt"
 DESKTOP_SRC="${PROJECT_ROOT}/lumo-viewer.desktop"
 DESKTOP_DST="${HOME}/.local/share/applications/lumo-viewer.desktop"
+START_SCRIPT="${PROJECT_ROOT}/run-lumo-viewer.sh"
 
 # ---------- 2. Hilfsfunktionen ----------
 log()   { echo -e "\e[32m[+] $*\e[0m"; }
@@ -90,6 +91,7 @@ cp "$DESKTOP_SRC" "$DESKTOP_DST"
 # Pfade dynamisch eintragen (absolute Pfade zum Projekt)
 sed -i "s|^Exec=.*|Exec=${PROJECT_ROOT}/run-lumo-viewer.sh|g" "$DESKTOP_DST"
 sed -i "s|^Icon=.*|Icon=${PROJECT_ROOT}/proton-lumo.svg|g" "$DESKTOP_DST"
+sed -i "s|^cd.*|cd ${PROJECT_ROOT}/|g" "$START_SCRIPT"
 
 # Desktop‑Cache aktualisieren (wenn das Tool vorhanden ist)
 if command -v update-desktop-database >/dev/null; then
