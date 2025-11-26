@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Lumo Viewer
+Comment=Lumo‑Web‑Viewer
+Exec=
+Icon=
+Terminal=false
+Type=Application
+Categories=Network;WebBrowser;Utility;
+StartupNotify=true
+Keywords=lumo;viewer;web;qt;pyqt5
+PrefersNonDefaultGPU=false
