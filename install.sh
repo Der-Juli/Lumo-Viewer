@@ -90,7 +90,7 @@ cp "$DESKTOP_SRC" "$DESKTOP_DST"
 
 # Pfade dynamisch eintragen (absolute Pfade zum Projekt)
 sed -i "s|^Exec=.*|Exec=${PROJECT_ROOT}/run-lumo-viewer.sh|g" "$DESKTOP_DST"
-sed -i "s|^Icon=.*|Icon=${PROJECT_ROOT}/proton-lumo.svg|g" "$DESKTOP_DST"
+sed -i "s|^Icon=.*|Icon=${PROJECT_ROOT}/proton-lumo.png|g" "$DESKTOP_DST"
 sed -i "s|^cd.*|cd ${PROJECT_ROOT}/|g" "$START_SCRIPT"
 
 # Desktop‑Cache aktualisieren (wenn das Tool vorhanden ist)
