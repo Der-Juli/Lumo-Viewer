@@ -18,7 +18,7 @@ VENV_DIR="${PROJECT_ROOT}/.venv"
 REQ_FILE="${PROJECT_ROOT}/requirements.txt"
 DESKTOP_SRC="${PROJECT_ROOT}/lumo-viewer.desktop"
 DESKTOP_DST="${HOME}/.local/share/applications/lumo-viewer.desktop"
-START_SCRIPT="${PROJECT_ROOT}/run-lumo-viewer.sh"
+MAIN_SCRIPT="${PROJECT_ROOT}/main.py"
 
 # ---------- 2. Hilfsfunktionen ----------
 log()   { echo -e "\e[32m[+] $*\e[0m"; }
@@ -80,7 +80,6 @@ fi
 
 # ---------- 7. Skripte ausführbar ----------
 log "Setze Ausführungsrechte für run‑lumo‑viewer.sh und main.py …"
-chmod +x "${PROJECT_ROOT}/run-lumo-viewer.sh"
 chmod +x "${PROJECT_ROOT}/main.py"
 
 # ---------- 8. Desktop‑Eintrag ----------
@@ -89,9 +88,9 @@ mkdir -p "$(dirname "$DESKTOP_DST")"
 cp "$DESKTOP_SRC" "$DESKTOP_DST"
 
 # Pfade dynamisch eintragen (absolute Pfade zum Projekt)
-sed -i "s|^Exec=.*|Exec=${PROJECT_ROOT}/run-lumo-viewer.sh|g" "$DESKTOP_DST"
+sed -i "s|^Exec=.*|Exec=${PROJECT_ROOT}/main.py|g" "$DESKTOP_DST"
 sed -i "s|^Icon=.*|Icon=${PROJECT_ROOT}/proton-lumo.png|g" "$DESKTOP_DST"
-sed -i "s|^cd.*|cd ${PROJECT_ROOT}/|g" "$START_SCRIPT"
+sed -i "s|^venv_path =.*|venv_path = \"${PROJECT_ROOT}/.venv\"|g" "$MAIN_SCRIPT"
 
 # Desktop‑Cache aktualisieren (wenn das Tool vorhanden ist)
 if command -v update-desktop-database >/dev/null; then
@@ -101,4 +100,4 @@ fi
 
 log "✅  Installation erfolgreich abgeschlossen!"
 log "Sie können Lumo‑Viewer jetzt über das Anwendungsmenü starten oder mit:"
-echo "    ${PROJECT_ROOT}/run-lumo-viewer.sh"
+

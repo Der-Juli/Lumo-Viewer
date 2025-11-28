@@ -1,7 +1,22 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 import sys
+import os
+venv_path = "/home/juli/projects/priv/Lumo-Viewer/.venv"
+site_packages = os.path.join(
+    venv_path,
+    "lib",
+    f"python{sys.version_info.major}.{sys.version_info.minor}",
+    "site-packages"
+)
+
+if site_packages not in sys.path:
+    sys.path.insert(0, site_packages)   # vorn einfügen, hat Vorrang
+
+# Optional: VIRTUAL_ENV setzen – manche Pakete prüfen das
+os.environ["VIRTUAL_ENV"] = venv_path
+
+
 from PyQt5.QtCore import QUrl, Qt, QMimeData
 from PyQt5.QtGui import QKeySequence, QClipboard, QPalette, QColor
 from PyQt5.QtWidgets import (
